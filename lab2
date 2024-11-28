@@ -1,0 +1,62 @@
+#include <string.h>
+#include <iostream>
+ 
+struct TwoInts //структура, содержащая 2 целочисленных поля а и б, которое позволяет считать эти два числа как один объект 
+{
+	int a;//объявлено
+	int b;//объявлено
+};
+ 
+struct StructWithArray
+{
+	int arr[4]; //массив из 4 целых чисел
+	int* someNumber; //указатель на число
+};
+ 
+int main()
+{
+	TwoInts i2 = { }; заполняем нулями
+	i2.a = 5;
+	i2.b = 7;
+
+	std::cout << i2.a << std::endl; //печатаем
+	std::cout << i2.b << std::endl; //печатаем
+	
+	StructWithArray s = { }; нулями заполняем
+	s.arr[0] = 10; (первый элемент массива интарр4)
+ 
+	StructWithArray s1 = { };
+	s1.arr[0] = 15;
+ 
+	StructWithArray* sPointer = &s; указатель с типом
+	sPointer->arr[0] = 20; на первый элемент массива
+
+//(*sPointer).arr[0] = 20
+*sPointer = 20
+
+(Прямое изменение значения Элемента)
+ 
+	std::cout << s.arr[0] << std::endl; //печатаем
+	s.arr[0] = 25;
+	std::cout << s.arr[0] << std::endl; //печатаем
+	sPointer->arr[0] = 30;
+	std::cout << s.arr[0] << std::endl; //печатаем
+ 
+	sPointer = &s1;
+	sPointer->arr[0] = 35;
+	std::cout << s.arr[0] << std::endl; //печатаем
+	std::cout << s1.arr[0] << std::endl; //печатаем
+ 
+	StructWithArray structArray[2](массив, два элемента) = { };
+	structArray[0].arr[3] = 77;
+	structArray[1].someNumber = &structArray[0].arr[3];
+ 
+	sPointer = &s;
+	int* pointer(создаём указатель типа инт) = &sPointer->arr[3];
+	s.arr[3] = 72;
+	std::cout << *pointer;
+ 
+	StructWithArray memory;(мусорные данные, инициализация 0)
+	memset(&memory, 0, sizeof(StructWithArray));
+	return 0;
+}
